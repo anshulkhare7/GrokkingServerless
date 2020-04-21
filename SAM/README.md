@@ -45,9 +45,12 @@ AWS CLI can store multiple combinations of access keys on the same system. A key
 +   `aws configure --profile samdevelop`
 +   `aws sts get-caller-identity --profile samdevelop`
 
-## Initialising Application with SAM
+### Initialising Application with SAM
 
-We'll use sample project using sam. Run the following command inside [code]() directory to clone a [Nodejs app template](https://github.com/awslabs/aws-sam-cli-app-templates.git).
+We'll use sample project using sam. Run the following command inside [code](https://github.com/anshulkhare7/GrokkingServerless/tree/master/SAM/code/) directory to clone a [Nodejs app template](https://github.com/awslabs/aws-sam-cli-app-templates.git).
 
 `sam init --runtime nodejs12.x --name app --app-template hello-world`
 
+### CloudFormation
+
+For deploying applications, SAM uses AWS CloudFormation. CloudFormation converts a source file describing an application infrastructure (called *template*) into a set of running, configured cloud resources (called *stack*). The *template.yaml* file is a CloudFormation template.
