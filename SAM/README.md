@@ -35,13 +35,19 @@ We'll be deploying a [Nodejs](https://nodejs.org/en/) application to Lambda so w
     -  AWSCodeDeployFullAccess
     -  AmazonAPIGatewayAdministrator
     -  AWSCloudFormationFullAccess
-3. Run `aws configure` and enter the values AWS Access Key ID and AWS Secret Access Key. Enter AWS region (e.g. ap-south-1, us-east-1). For default output format, enter `json`
+3. Run `aws configure` and enter the values AWS Access Key ID and AWS Secret Access Key. Enter AWS region (e.g. ap-south-1, us-east-1). For default output format, enter *json* (other options are *text* or *table*)
 4. Check that your credentials are correctly configured by running the command - `aws sts get-caller-identity`
 
 ### Profile
 
 AWS CLI can store multiple combinations of access keys on the same system. A key combination is called a profile. A profile can be setup by adding the `--profile` option to the command for configuring access keys, followed by a profile name.
 
-    -   `aws configure --profile samdevelop`
-    -   `aws sts get-caller-identity --profile samdevelop`
++   `aws configure --profile samdevelop`
++   `aws sts get-caller-identity --profile samdevelop`
+
+## Initialising Application with SAM
+
+We'll use sample project using sam. Run the following command inside [code]() directory to clone a [Nodejs app template](https://github.com/awslabs/aws-sam-cli-app-templates.git).
+
+`sam init --runtime nodejs12.x --name app --app-template hello-world`
 
