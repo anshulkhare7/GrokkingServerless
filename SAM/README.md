@@ -93,3 +93,29 @@ E.g.
 To see the list of resources in a stack 
 
 `aws cloudformation describe-stack-resources --stack-name sam-test-1`
+
+### Logs
+
+Retrieving logs. (Check [SAM Logs Command Reference](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-cli-command-reference-sam-logs.html))
+
+`sam logs -n HelloWorldFunction --stack-name sam-test-1`
+
+Searching log. For example, the following command will show only the log lines containing the word ERROR from the last month. (For filters syntax, check the [Filter and Pattern Syntax](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/FilterAndPatternSyntax.html))
+
+`sam logs -n HelloWorldFunction --stack-name sam-test-1 --filter ERROR -s "1 month ago"`
+
+Tailing logs.
+
+`sam logs -n HelloWorldFunction --stack-name sam-test-1 --tail`
+
+### Simulating Lambda Locally
+
+Local simulation requires Docker.
+
+`sam local start-api`
+
+We can also use `sam local` to send events to individual Lambda functions. We just take sample events from remote CloudWatch logs and replay them locally in a simulated environment for debugging. Save the event JSON structure to event.json.
+
+`sam local invoke HelloWorldFunction --event event.json`
+
+
