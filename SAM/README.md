@@ -55,7 +55,7 @@ We'll use sample project using sam. Run the following command inside [code](http
 
 For deploying applications, SAM uses AWS CloudFormation. CloudFormation converts a source file describing an application infrastructure (called *template*) into a set of running, configured cloud resources (called *stack*). The *template.yaml* file is a CloudFormation template.
 
-### Building, Packagin, and Deploying SAM
+### Building, Packaging, and Deploying SAM
 
 
 `sam build` will create a default temporary directory, .aws-sam/build and place the build contents inside it.
@@ -64,10 +64,32 @@ The next step is to bundle all the files required by each function into separate
 
 `aws s3 mb s3://<bucket_name> --region ap-south-1`
 
+Deleting a bucket
+
+`aws s3 rm s3://<bucket_name> --recursive`
+
 Set the bucket name in the env variable
 
 `export BUCKET_NAME=<bucket_name>`
 
- zip up and upload function packages to S3
+Zip up and upload function packages to S3
 
- `sam package --s3-bucket $BUCKET_NAME --output-template-file output.yaml`
+`sam package --s3-bucket $BUCKET_NAME --output-template-file output.yaml`
+
+The generated file `output.yaml` describes the entire infrastructure and links to a packaged version of the function code. A running instace of the Cloudformation stack will be created based on this file. 
+
+`sam deploy --template-file output.yaml --stack-name sam-test-1 --capabilities CAPABILITY_IAM`
+
+Inspecting a stack
+
+`aws cloudformation describe-stacks --stack-name sam-test-1`
+
+AWS command line tools use the [JMESPath query](http://jmespath.org) syntax, which makes it possible to do complex searching, filtering and transformations of the results. 
+E.g.
+
+`aws cloudformation describe-stacks --stack-name sam-test-1 --query Stacks[].Outputs`
+``aws cloudformation describe-stacks --stack-name sam-test-1 --output text --query 'Stacks[].Outputs[?OutputKey==`HelloWorldApi`][OutputValue]'`` 
+
+To see the list of resources in a stack 
+
+`aws cloudformation describe-stack-resources --stack-name sam-test-1`
