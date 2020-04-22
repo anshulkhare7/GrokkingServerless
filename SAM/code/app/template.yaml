@@ -1,3 +1,5 @@
+# This is an optional setting. The current version is 2010-09-09,(hasn’t really changed since September 2010). 
+# If you don’t specify the version, though, CloudFormation will use the latest available.
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: >
@@ -6,11 +8,13 @@ Description: >
   Sample SAM Template for app
   
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+# The global settings here are applicable to all Lambda functions specified in this file.
 Globals:
   Function:
     Timeout: 3
 
 Resources:
+  # Logical ID of a lambda resource. A variable that will be used to refer to this resource in this template file.
   HelloWorldFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:

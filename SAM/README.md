@@ -55,3 +55,19 @@ We'll use sample project using sam. Run the following command inside [code](http
 
 For deploying applications, SAM uses AWS CloudFormation. CloudFormation converts a source file describing an application infrastructure (called *template*) into a set of running, configured cloud resources (called *stack*). The *template.yaml* file is a CloudFormation template.
 
+### Building, Packagin, and Deploying SAM
+
+
+`sam build` will create a default temporary directory, .aws-sam/build and place the build contents inside it.
+
+The next step is to bundle all the files required by each function into separate ZIP archives and upload the results to S3. Aws S3 will be our binary aretefact storage. 
+
+`aws s3 mb s3://<bucket_name> --region ap-south-1`
+
+Set the bucket name in the env variable
+
+`export BUCKET_NAME=<bucket_name>`
+
+ zip up and upload function packages to S3
+
+ `sam package --s3-bucket $BUCKET_NAME --output-template-file output.yaml`
