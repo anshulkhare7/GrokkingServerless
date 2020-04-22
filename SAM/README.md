@@ -54,3 +54,4 @@ We'll use sample project using sam. Run the following command inside [code](http
 ### CloudFormation
 
 For deploying applications, SAM uses AWS CloudFormation. CloudFormation converts a source file describing an application infrastructure (called *template*) into a set of running, configured cloud resources (called *stack*). The *template.yaml* file is a CloudFormation template.
+
