@@ -1,0 +1,16 @@
+service: aws-node-telegram-echo-bot
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ap-south-1
+
+functions:
+  webhook:
+    handler: handler.webhook
+    environment:
+      BOT_TOKEN: 1231588257:AAFIuMtb5DnUnU8Z30sO8zAOZ5zq97UvSp4
+    events:
+      - http:
+          path: webhook
+          method: post

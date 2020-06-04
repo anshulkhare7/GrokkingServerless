@@ -88,6 +88,7 @@ AWS command line tools use the [JMESPath query](http://jmespath.org) syntax, whi
 E.g.
 
 `aws cloudformation describe-stacks --stack-name sam-test-1 --query Stacks[].Outputs`
+
 ``aws cloudformation describe-stacks --stack-name sam-test-1 --output text --query 'Stacks[].Outputs[?OutputKey==`HelloWorldApi`][OutputValue]'`` 
 
 To see the list of resources in a stack 
